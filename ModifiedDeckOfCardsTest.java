@@ -9,17 +9,18 @@ public class ModifiedDeckOfCardsTest
   //execute application
   public static void main(String[] args)
   {
-    DeckOfCards myDeckOfCards = new DeckOfCards();
+    ModifiedDeckOfCards myDeckOfCards = new ModifiedDeckOfCards();
     myDeckOfCards.shuffle();  // place cards in random order
 
-    // print all 52 Cards in the order in which they are dealt
-    for(int i = 1; i<= 52; i++)
+    ModifiedCard[] pokerHand = new ModifiedCard[5];
+    // deal a hand of five cards
+    for(int i = 0; i < 5; i++)
     {
       // deal and display a Card
-      System.out.printf("%-19s", myDeckOfCards.dealCard());
-
-      if(i % 4 == 0) // output a newline after every fourth card
-      System.out.println();
+      pokerHand[i] = myDeckOfCards.dealCard();
+      System.out.printf("%-19s", pokerHand[i]);
     }
+  System.out.println();
+
   }
 }
