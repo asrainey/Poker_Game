@@ -3,13 +3,13 @@
 // This application modifies Fig. 7.11: Card.java to add methods
 // getFace and getSuit
 
-public class Card
+public class ModifiedCard
 {
   private final String face; // face of card ("Ace", "Deuce", ...)
   private final String suit;  // suit of card ("Hearts", "Diamonds", ...)
 
   // two argument constructor initializes card's face and suit
-  public Card(String cardFace, String cardSuit)
+  public ModifiedCard(String cardFace, String cardSuit)
   {
     this.face = cardFace;  // initializes face of cardFace
     this.suit = cardSuit;  // initializes suit of card
