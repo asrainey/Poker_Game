@@ -11,26 +11,26 @@ import java.security.SecureRandom;
 
 public class ModifiedDeckOfCards
 {
-  private Card[] deck;    // array of Card objects
+  private ModifiedCard[] deck;    // array of Card objects
   private int currentCard;  // index of next Card to be dealt (0-51)
   private static final int NUMBER_OF_CARDS = 52; // constant number of cardSuit
   // random number generator
   private static final SecureRandom randomNumbers = new SecureRandom();
 
   //constructor fills deck of cardSuit
-  public DeckOfCards()
+  public ModifiedDeckOfCards()
   {
     String[] faces = {"Ace", "Deuce", "Three", "Four", "Five", "Six",
       "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
     String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
 
-    deck = new Card[NUMBER_OF_CARDS];   // create an array of card objects
+    deck = new ModifiedCard[NUMBER_OF_CARDS];   // create an array of card objects
     currentCard = 0;   // first card dealt will be deck[0]
 
     // populate deck with Card objects
     for(int count = 0; count < deck.length; count++)
       deck[count] =
-        new Card(faces[count % 13], suits[count / 13]);
+        new ModifiedCard(faces[count % 13], suits[count / 13]);
   }
 
   // shuffle deck of Cards with one-pass algorithm
@@ -46,7 +46,7 @@ public class ModifiedDeckOfCards
       int second = randomNumbers.nextInt(NUMBER_OF_CARDS);
 
       // swap current Card with randomly selected Card
-      Card temp = deck[first];
+      ModifiedCard temp = deck[first];
       deck[first] = deck[second];
       deck[second] = temp;
 
@@ -54,12 +54,169 @@ public class ModifiedDeckOfCards
   }
 
   // deal one Card
-  public Card dealCard()
+  public ModifiedCard dealCard()
   {
     // determine whether Cards remain to be dealt
     if(currentCard < deck.length)
       return deck[currentCard++];  // return current Card in array
     else
       return null;  // return null to indicate all cards were dealt
+  }
+
+  public void reviewSuits(ModifiedCard[] hand)
+  {
+    int[] suitFrequency = new int[4];
+
+    for(int k = 0; k < hand.length; k++)
+    {
+      String face = hand[k].getSuit();
+
+      if(face.equals("Hearts"))
+      {
+        ++suitFrequency[0];
+      }
+      else if(face.equals("Diamonds"))
+      {
+        ++suitFrequency[1];
+      }
+      else if(face.equals("Clubs"))
+      {
+        ++suitFrequency[2];
+      }
+      else
+      {
+        ++suitFrequency[3];
+      }
+    }
+
+    for(int k = 0; k < suitFrequency.length; k++)
+    {
+      if(suitFrequency[k] == 5)
+      {
+        System.out.println("Your hand contains a flush");
+      }
+    }
+
+  }
+
+  public void reviewFaces(ModifiedCard[] hand)
+  {
+    int[] faceFrequency = new int[13];
+
+    for(int k = 0; k < hand.length; k++)
+    {
+      String face = hand[k].getFace();
+
+      switch(face)
+      {
+        case "Ace":
+          ++faceFrequency[0];
+          break;
+        case "Deuce":
+          ++faceFrequency[1];
+          break;
+        case "Three":
+          ++faceFrequency[2];
+          break;
+        case "Four":
+          ++faceFrequency[3];
+          break;
+        case "Five":
+          ++faceFrequency[4];
+          break;
+        case "Six":
+          ++faceFrequency[5];
+          break;
+        case "Seven":
+          ++faceFrequency[6];
+          break;
+        case "Eight":
+          ++faceFrequency[7];
+          break;
+        case "Nine":
+          ++faceFrequency[8];
+          break;
+        case "Ten":
+          ++faceFrequency[9];
+          break;
+        case "Jack":
+          ++faceFrequency[10];
+            break;
+        case "Queen":
+          ++faceFrequency[11];
+          break;
+        case "King":
+          ++faceFrequency[12];
+          break;
+      }
+    }
+    // test array
+    //for(int k = 0; k < faceFrequency.length; k++)
+    //{
+    //  System.out.printf("faceFrequency[%d] = %d\n", k, faceFrequency[k]);
+    //}
+
+    for(int k = 0; k < faceFrequency.length; k++)
+    {
+      if(faceFrequency[k] == 2)
+      {
+        for(int i = k + 1; i < faceFrequency.length; i++)
+        {
+          if(faceFrequency[i] == 3)
+          {
+            System.out.println("Your hand contains a full house");
+          }
+          else if(faceFrequency[i] == 2)
+          {
+            System.out.println("Your hand contains two pairs");
+          }
+          else
+          {
+            System.out.println("Your hand contains a pair");
+            System.exit(0);
+          }
+        }
+      }
+
+      if(faceFrequency[k] == 3)
+      {
+        for(int i = k + 1; i < faceFrequency.length; i++)
+        {
+          if(faceFrequency[i] == 2)
+          {
+            System.out.println("Your hand contains a full house");
+          }
+          else
+          {
+            System.out.println("Your hand contains a three of a kind");
+          }
+        }
+        break;
+      }
+
+      if(faceFrequency[k] == 4)
+      {
+        System.out.println("Your hand contains a four of a kind");
+        break;
+      }
+    }
+
+    for(int n = 0; n < (faceFrequency.length - 5); ++n)
+    if(faceFrequency[n] == 1)
+    {
+      if(faceFrequency[n + 1] == 1)
+      {
+        if(faceFrequency[n + 2] == 1)
+        {
+          if(faceFrequency[n + 3] == 1)
+          {
+            if(faceFrequency[n + 1] == 1)
+            {
+              System.out.println("Your hand contains a straight");
+            }
+          }
+        }
+      }
+    }
   }
 }
