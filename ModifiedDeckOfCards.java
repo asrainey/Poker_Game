@@ -165,17 +165,16 @@ public class ModifiedDeckOfCards
           if(faceFrequency[i] == 3)
           {
             System.out.println("Your hand contains a full house");
+            System.exit(0);
           }
           else if(faceFrequency[i] == 2)
           {
             System.out.println("Your hand contains two pairs");
-          }
-          else
-          {
-            System.out.println("Your hand contains a pair");
             System.exit(0);
           }
         }
+          System.out.println("Your hand contains a pair");
+          System.exit(0);
       }
 
       if(faceFrequency[k] == 3)
@@ -186,18 +185,15 @@ public class ModifiedDeckOfCards
           {
             System.out.println("Your hand contains a full house");
           }
-          else
-          {
-            System.out.println("Your hand contains a three of a kind");
-          }
         }
-        break;
+        System.out.println("Your hand contains a three of a kind");
+        System.exit(0);
       }
 
       if(faceFrequency[k] == 4)
       {
         System.out.println("Your hand contains a four of a kind");
-        break;
+        System.exit(0);
       }
     }
 
@@ -210,7 +206,7 @@ public class ModifiedDeckOfCards
         {
           if(faceFrequency[n + 3] == 1)
           {
-            if(faceFrequency[n + 1] == 1)
+            if(faceFrequency[n + 4] == 1)
             {
               System.out.println("Your hand contains a straight");
             }

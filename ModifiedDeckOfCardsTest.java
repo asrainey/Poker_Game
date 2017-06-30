@@ -20,7 +20,10 @@ public class ModifiedDeckOfCardsTest
       pokerHand[i] = myDeckOfCards.dealCard();
       System.out.printf("%-19s", pokerHand[i]);
     }
-  System.out.println();
+    System.out.println();
+
+    myDeckOfCards.reviewFaces(pokerHand);
+    myDeckOfCards.reviewSuits(pokerHand);
 
   }
 }
