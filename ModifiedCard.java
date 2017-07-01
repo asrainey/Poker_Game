@@ -1,7 +1,9 @@
 // Exercise 7.16: ModifiedCard.java
+// Also used with Exercise 7.17, 7.18
 // ModifiedCard class represents a playing card
 // This application modifies Fig. 7.11: Card.java to add methods
 // getFace and getSuit
+
 
 public class ModifiedCard
 {
