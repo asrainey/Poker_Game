@@ -12,33 +12,16 @@ public class PokerWithDealerHand
   public static void main(String[] args)
   {
     DeckOfCardsDealer myDeckOfCards = new DeckOfCardsDealer();
-    myDeckOfCards.shuffle();  // place cards in random order
 
-    ModifiedCard[] pokerHand = new ModifiedCard[5];
-    System.out.println("Player 1 =\n");
-    // deal a hand of five cards
-    for(int i = 0; i < 5; i++)
-    {
-      // deal and display a Card
-      pokerHand[i] = myDeckOfCards.dealCard();
-      System.out.printf("%-19s", pokerHand[i]);
-    }
-    System.out.println();
+    ModifiedCard[] dealerHand = myDeckOfCards.dealDealerHand();
 
-    int handRanking = myDeckOfCards.rankHand(pokerHand);
+    ModifiedCard[] player1 = myDeckOfCards.dealHand();
+    System.out.println("Hand for Player 1");
+    int handRanking = myDeckOfCards.rankHand(player1);
 
-    ModifiedCard[] pokerHand2 = new ModifiedCard[5];
-    System.out.println("Player 2 =\n");
-
-    for(int i = 0; i < 5; i++)
-    {
-      // deal and display a Card
-      pokerHand2[i] = myDeckOfCards.dealCard();
-      System.out.printf("%-19s", pokerHand2[i]);
-    }
-    System.out.println();
-
-    int handRanking2 = myDeckOfCards.rankHand(pokerHand2);
+    ModifiedCard[] player2 = myDeckOfCards.dealHand();
+    System.out.println("Hand for Player 2");
+    int handRanking2 = myDeckOfCards.rankHand(player2);
 
     if(handRanking > handRanking2)
     {

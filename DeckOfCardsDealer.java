@@ -60,6 +60,41 @@ public class DeckOfCardsDealer
       return null;  // return null to indicate all cards were dealt
   }
 
+  public ModifiedCard[] dealHand()
+  {
+    DeckOfCardsDealer myDeckOfCards = new DeckOfCardsDealer();
+    myDeckOfCards.shuffle();  // place cards in random order
+
+    ModifiedCard[] pokerHand = new ModifiedCard[5];
+    // deal a hand of five cards
+    for(int i = 0; i < 5; i++)
+    {
+      // deal and display a Card
+      pokerHand[i] = myDeckOfCards.dealCard();
+      System.out.printf("%-19s", pokerHand[i]);
+    }
+    System.out.println();
+
+    return pokerHand;
+  }
+
+  public ModifiedCard[] dealDealerHand()
+  {
+    DeckOfCardsDealer myDeckOfCards = new DeckOfCardsDealer();
+    myDeckOfCards.shuffle();  // place cards in random order
+
+    ModifiedCard[] pokerHand = new ModifiedCard[5];
+    // deal a hand of five cards
+    for(int i = 0; i < 5; i++)
+    {
+      // deal and display a Card
+      pokerHand[i] = myDeckOfCards.dealCard();
+    }
+    System.out.println();
+
+    return pokerHand;
+  }
+
   public int reviewSuits(ModifiedCard[] hand)
   {
     int[] suitFrequency = new int[4];
@@ -91,7 +126,6 @@ public class DeckOfCardsDealer
     {
       if(suitFrequency[k] == 5)
       {
-        System.out.println("Your hand contains a flush");
         ranking = 5;
       }
       else
@@ -154,11 +188,6 @@ public class DeckOfCardsDealer
           break;
       }
     }
-    // test array
-    //for(int k = 0; k < faceFrequency.length; k++)
-    //{
-    //  System.out.printf("faceFrequency[%d] = %d\n", k, faceFrequency[k]);
-    //}
 
     for(int k = 0; k < faceFrequency.length; k++)
     {
@@ -168,16 +197,13 @@ public class DeckOfCardsDealer
         {
           if(faceFrequency[i] == 3)
           {
-            System.out.println("Your hand contains a full house");
             ranking = 7;
           }
           else if(faceFrequency[i] == 2)
           {
-            System.out.println("Your hand contains two pairs");
             ranking = 2;
           }
         }
-        System.out.println("Your hand contains a pair");
         ranking = 1;
         break;
       }
@@ -188,17 +214,14 @@ public class DeckOfCardsDealer
         {
           if(faceFrequency[i] == 2)
           {
-            System.out.println("Your hand contains a full house");
             ranking = 7;
           }
         }
-        System.out.println("Your hand contains a three of a kind");
         ranking = 3;
       }
 
       if(faceFrequency[k] == 4)
       {
-        System.out.println("Your hand contains a four of a kind");
         ranking = 4;
       }
     }
@@ -214,7 +237,6 @@ public class DeckOfCardsDealer
           {
             if(faceFrequency[n + 4] == 1)
             {
-              System.out.println("Your hand contains a straight");
               ranking = 6;
             }
           }
@@ -241,6 +263,35 @@ public class DeckOfCardsDealer
     {
       handRanking = suitRanking;
     }
+
+    switch(handRanking)
+    {
+      case 1:
+        System.out.println("Your hand contains a pair");
+        break;
+      case 2:
+        System.out.println("Your hand contains two pairs");
+        break;
+      case 3:
+        System.out.println("Your hand contains a three of a kind");
+        break;
+      case 4:
+        System.out.println("Your hand contains a four of a kind");
+        break;
+      case 5:
+        System.out.println("Your hand contains a flush");
+        break;
+      case 6:
+        System.out.println("Your hand contains a straight");
+        break;
+      case 7:
+        System.out.println("Your hand contains a full house");
+        break;
+      default:
+        System.out.println();
+        break;
+    }
+    System.out.println();
     return handRanking;
   }
 }
