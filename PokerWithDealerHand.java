@@ -34,7 +34,16 @@ public class PokerWithDealerHand
     }
     System.out.println();
 
-    //int updatedDealerHandRanking = myDeckOfCards.rankHand(updatedDealerHand);
+    updatedDealerHand = myDeckOfCards.updateCardsinHand(dealerHand);
+
+    for(int i = 0; i < 5; i++)
+    {
+      // display original dealer hand
+      System.out.printf("%-19s", updatedDealerHand[i]);
+    }
+    System.out.println();
+
+    int updatedDealerHandRanking = myDeckOfCards.rankHand(updatedDealerHand);
 
     /*ModifiedCard[] player1 = myDeckOfCards.dealHand();
     System.out.println("-- Hand for Player 1 --");

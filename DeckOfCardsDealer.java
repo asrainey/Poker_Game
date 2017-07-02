@@ -317,12 +317,12 @@ public class DeckOfCardsDealer
     DeckOfCardsDealer myDeckOfCards = new DeckOfCardsDealer();
     int handRanking = myDeckOfCards.rankHand(pokerHand);
 
-    if(handRanking == 0) // replace any three cards
-    {
-      pokerHand[2] = myDeckOfCards.dealCard();
-      pokerHand[3] = myDeckOfCards.dealCard();
-      pokerHand[4] = myDeckOfCards.dealCard();
-    }
+    //if(handRanking == 0) // replace any three cards
+    //{
+    //  pokerHand[2] = myDeckOfCards.dealCard();
+    //  pokerHand[3] = myDeckOfCards.dealCard();
+    //  pokerHand[4] = myDeckOfCards.dealCard();
+    //}
 
     ModifiedCard[] updatedPokerHand = myDeckOfCards.sorting(pokerHand);
 
