@@ -15,12 +15,33 @@ public class PokerWithDealerHand
 
     ModifiedCard[] dealerHand = myDeckOfCards.dealDealerHand();
 
-    ModifiedCard[] player1 = myDeckOfCards.dealHand();
-    System.out.println("Hand for Player 1");
+    for(int i = 0; i < 5; i++)
+    {
+      // display original dealer hand
+      System.out.printf("%-19s", dealerHand[i]);
+    }
+    System.out.println();
+
+    int dealerHandRanking = myDeckOfCards.rankHand(dealerHand);
+
+    ModifiedCard[] updatedDealerHand = myDeckOfCards.sorting(dealerHand);
+
+    // myDeckOfCards.updateCardsinHand(dealerHand);
+    for(int i = 0; i < 5; i++)
+    {
+      // display original dealer hand
+      System.out.printf("%-19s", updatedDealerHand[i]);
+    }
+    System.out.println();
+
+    //int updatedDealerHandRanking = myDeckOfCards.rankHand(updatedDealerHand);
+
+    /*ModifiedCard[] player1 = myDeckOfCards.dealHand();
+    System.out.println("-- Hand for Player 1 --");
     int handRanking = myDeckOfCards.rankHand(player1);
 
     ModifiedCard[] player2 = myDeckOfCards.dealHand();
-    System.out.println("Hand for Player 2");
+    System.out.println("-- Hand for Player 2 --");
     int handRanking2 = myDeckOfCards.rankHand(player2);
 
     if(handRanking > handRanking2)
@@ -34,6 +55,6 @@ public class PokerWithDealerHand
     else
     {
       System.out.println("Both players have the same hand.");
-    }
+    }*/
   }
 }
