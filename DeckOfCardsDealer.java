@@ -396,6 +396,8 @@ public class DeckOfCardsDealer
   public ModifiedCard[] sorting(ModifiedCard[] pokerHand)
   {
     ModifiedCard[] updatedPokerHand = new ModifiedCard[5];
+    updatedPokerHand = pokerHand;
+
     int[] tempPokerSort = new int[5];
 
     for(int k = 0; k < pokerHand.length; k++)
@@ -446,7 +448,9 @@ public class DeckOfCardsDealer
       }
     }
 
-    for(int i = 0; i < tempPokerSort.length - 1; i++)
+    updatedPokerHand[0] = pokerHand[0];
+
+    for(int i = 0; i < tempPokerSort.length-1; i++)
     {
       int smallest = i;
 
@@ -454,9 +458,13 @@ public class DeckOfCardsDealer
       {
         if(tempPokerSort[index] < tempPokerSort[smallest])
         {
-          updatedPokerHand[smallest] = pokerHand[index];
-          updatedPokerHand[index] = pokerHand[smallest];
-          smallest = index;
+          ModifiedCard tempCard = updatedPokerHand[smallest];
+          updatedPokerHand[smallest] = updatedPokerHand[index];
+          updatedPokerHand[index] = tempCard;
+          int tempVar = tempPokerSort[smallest];
+          tempPokerSort[smallest] = tempPokerSort[index];
+          tempPokerSort[index] = tempVar;
+
         }
       }
     }
