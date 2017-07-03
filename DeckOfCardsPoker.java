@@ -309,14 +309,33 @@ public class DeckOfCardsPoker
         System.out.println();
         break;
     }
-    System.out.println();
+    return handRanking;
+  }
+
+  public int rankHandLimited(ModifiedCard[] pokerHand)
+  {
+    DeckOfCardsPoker myDeckOfCards = new DeckOfCardsPoker();
+
+    int faceRanking = myDeckOfCards.reviewFaces(pokerHand);
+    int suitRanking = myDeckOfCards.reviewSuits(pokerHand);
+
+    int handRanking = 0;
+
+    if(faceRanking > suitRanking)
+    {
+      handRanking = faceRanking;
+    }
+    else
+    {
+      handRanking = suitRanking;
+    }
     return handRanking;
   }
 
   public ModifiedCard[] updateCardsinHand(ModifiedCard[] pokerHand)
   {
     DeckOfCardsPoker myDeckOfCards = new DeckOfCardsPoker();
-    int handRanking = myDeckOfCards.rankHand(pokerHand);
+    int handRanking = myDeckOfCards.rankHandLimited(pokerHand);
 
     if(handRanking == 0) // replace any three cards
     {
