@@ -6,6 +6,7 @@
 
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class DeckOfCardsPoker
 {
@@ -489,5 +490,49 @@ public class DeckOfCardsPoker
       }
     }
     return updatedPokerHand;
+  }
+
+  public ModifiedCard[] playerRedraw(ModifiedCard[] pokerHand)
+  {
+    DeckOfCardsPoker myDeckOfCards = new DeckOfCardsPoker();
+    Scanner input = new Scanner(System.in);
+
+    ModifiedCard[] updatedPokerHand = pokerHand;
+    System.out.println("You may replace up to three cards in your hand.")
+
+    for(int k = 0; k < 3; k++)
+    {
+      System.out.print("Would you like to draw a replacement card? Y/N: ");
+      String answer = input.nextLine();
+
+      if(answer.equalsIgnoreCase("Y"))
+      {
+        updatedPokerHand = myDeckOfCards.replaceCard(updatedPokerHand);
+      }
+      else if(answer.equalsIgnoreCase("N"))
+      {
+        break;
+      }
+      else
+      {
+        System.out.println("That is not a valid answer.")
+        myDeckOfCards.playerRedraw(updatedPokerHand);
+      }
+    }
+    return updatedPokerHand;
+  }
+
+  public ModifiedCard[] replaceCard(ModifiedCard pokerHand)
+  {
+    System.out.print("Which card would you like to discard? ");
+
+    pokerHand[i] = myDeckOfCards.dealCard();
+
+    System.out.println("Your updated hand - ");
+    for(int i = 0; i < 5; i++)
+    {
+      System.out.printf("%-19s", pokerHand[i])
+    }
+    return pokerHand;
   }
 }
