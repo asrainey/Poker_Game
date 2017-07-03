@@ -1,8 +1,8 @@
 // Exercise 7.18: DeckOfCardsDealer.java
-// ModifiedDeckOfCards2 class represents a deck of playing cards
+// DeckOfCardsDealer class represents a deck of playing cards
 // This application modifies Exercise 7.17: ModifiedDeckOfCards2.java to update
 // methods to include a dealer hand and allow for a second draw to replace
-// unneeded cards
+// unwanted cards (up to three)
 
 import java.security.SecureRandom;
 import java.util.Arrays;
