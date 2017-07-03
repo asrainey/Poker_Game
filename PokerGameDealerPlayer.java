@@ -22,6 +22,9 @@ public class PokerGameDealerPlayer
     System.out.println("-- Hand for Player 1 --");
     int handRanking = myDeckOfCards.rankHand(player1);
 
+    ModifiedCard[] updatedPlayer1 = myDeckOfCards.playerRedraw(player1);
+
+    int updatedHandRanking = myDeckOfCards.rankHand(updatedPlayer1);
     //ModifiedCard[] player2 = myDeckOfCards.dealHand();
     //System.out.println("-- Hand for Player 2 --");
     //int handRanking2 = myDeckOfCards.rankHand(player2);

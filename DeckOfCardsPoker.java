@@ -126,7 +126,7 @@ public class DeckOfCardsPoker
 
   public int reviewSuits(ModifiedCard[] hand)
   {
-     DeckOfCardsPoker myDeckOfCards = new DeckOfCardsPoker();
+    DeckOfCardsPoker myDeckOfCards = new DeckOfCardsPoker();
 
     int[] suitFrequency = myDeckOfCards.determineSuitFrequency(hand);
     int ranking = 0;
@@ -498,7 +498,7 @@ public class DeckOfCardsPoker
     Scanner input = new Scanner(System.in);
 
     ModifiedCard[] updatedPokerHand = pokerHand;
-    System.out.println("You may replace up to three cards in your hand.")
+    System.out.println("You may replace up to three cards in your hand.");
 
     for(int k = 0; k < 3; k++)
     {
@@ -515,24 +515,87 @@ public class DeckOfCardsPoker
       }
       else
       {
-        System.out.println("That is not a valid answer.")
+        System.out.println("That is not a valid answer.");
         myDeckOfCards.playerRedraw(updatedPokerHand);
       }
     }
     return updatedPokerHand;
   }
 
-  public ModifiedCard[] replaceCard(ModifiedCard pokerHand)
+  public ModifiedCard[] replaceCard(ModifiedCard[] pokerHand)
   {
-    System.out.print("Which card would you like to discard? ");
+    DeckOfCardsPoker myDeckOfCards = new DeckOfCardsPoker();
+    Scanner input = new Scanner(System.in);
 
-    pokerHand[i] = myDeckOfCards.dealCard();
+    ModifiedCard[] updatedPokerHand = myDeckOfCards.sorting(pokerHand);
+
+    System.out.print("Which card would you like to discard? ");
+    String card = input.nextLine();
+    String[] cardAttributes = card.split(" ");
+
+    String cardFace = cardAttributes[0];
+    String cardSuit = cardAttributes[cardAttributes.length - 1];
+
+    String[] handFaces = new String[5];
+
+    // create handFaces array
+    for(int k = 0; k < updatedPokerHand.length; k++)
+    {
+      handFaces[k] = updatedPokerHand[k].getFace();
+    }
+
+    for(int k = 0; k < handFaces.length; k++)
+    {
+      System.out.printf("%-19s", handFaces[k]);
+    }
+
+    for (int i = 0; i < handFaces.length - 1; i++)
+    {
+      if (cardFace == handFaces[i])
+      {
+
+        if(handFaces[i] == handFaces[i + 1])
+        {
+          String handSuit1 = updatedPokerHand[i].getSuit();
+          String handSuit2 = updatedPokerHand[i + 1].getSuit();
+
+          if(cardSuit == handSuit1)
+          {
+            updatedPokerHand[i] = myDeckOfCards.dealCard();
+          }
+          else
+          {
+            updatedPokerHand[i + 1] = myDeckOfCards.dealCard();
+          }
+        }
+        else if(handFaces[i] == handFaces[handFaces.length - 1])
+        {
+          String handSuit1 = updatedPokerHand[i].getSuit();
+          String handSuit2 = updatedPokerHand[handFaces.length - 1].getSuit();
+
+          if(cardSuit == handSuit1)
+          {
+            updatedPokerHand[i] = myDeckOfCards.dealCard();
+          }
+          else
+          {
+            updatedPokerHand[handFaces.length - 1] = myDeckOfCards.dealCard();
+          }
+        }
+      }
+      else
+      {
+        updatedPokerHand[i] = myDeckOfCards.dealCard();
+      }
+      break;
+    }
 
     System.out.println("Your updated hand - ");
     for(int i = 0; i < 5; i++)
     {
-      System.out.printf("%-19s", pokerHand[i])
+      System.out.printf("%-19s", updatedPokerHand[i]);
     }
-    return pokerHand;
+    System.out.println();
+    return updatedPokerHand;
   }
 }
