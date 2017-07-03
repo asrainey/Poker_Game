@@ -204,25 +204,34 @@ public class DeckOfCardsDealer
     DeckOfCardsDealer myDeckOfCards = new DeckOfCardsDealer();
 
     int[] faceFrequency = myDeckOfCards.determineFaceFrequency(hand);
+    Arrays.sort(faceFrequency);
+    
     int ranking = 0;
-
-    for(int k = 0; k < faceFrequency.length; k++)
+    int k = 0;
+    //for(int k = 0; k < faceFrequency.length; ++k)
+    while(ranking == 0)
     {
       if(faceFrequency[k] == 2)
       {
-        for(int i = k + 1; i < faceFrequency.length; i++)
+        for(int i = (k + 1); i < faceFrequency.length; ++i)
         {
           if(faceFrequency[i] == 3)
           {
             ranking = 7;
+            break;
           }
           else if(faceFrequency[i] == 2)
           {
             ranking = 2;
+            break;
+          }
+          else
+          {
+            ranking = 1;
+            break;
           }
         }
-        ranking = 1;
-        break;
+        //break;
       }
 
       if(faceFrequency[k] == 3)
@@ -232,14 +241,27 @@ public class DeckOfCardsDealer
           if(faceFrequency[i] == 2)
           {
             ranking = 7;
+            break;
+          }
+          else
+          {
+            ranking = 3;
+            break;
           }
         }
-        ranking = 3;
+        //ranking = 3;
       }
 
       if(faceFrequency[k] == 4)
       {
         ranking = 4;
+        break;
+      }
+      k++;
+
+      if (k > 12)
+      {
+        break;
       }
     }
 
@@ -259,6 +281,10 @@ public class DeckOfCardsDealer
           }
         }
       }
+    }
+    for(k = 0; k < faceFrequency.length; k++)
+    {
+      System.out.printf("%d: %d\n", k, faceFrequency[k]);
     }
     return ranking;
   }
@@ -317,12 +343,12 @@ public class DeckOfCardsDealer
     DeckOfCardsDealer myDeckOfCards = new DeckOfCardsDealer();
     int handRanking = myDeckOfCards.rankHand(pokerHand);
 
-    //if(handRanking == 0) // replace any three cards
-    //{
-    //  pokerHand[2] = myDeckOfCards.dealCard();
-    //  pokerHand[3] = myDeckOfCards.dealCard();
-    //  pokerHand[4] = myDeckOfCards.dealCard();
-    //}
+    if(handRanking == 0) // replace any three cards
+    {
+      pokerHand[2] = myDeckOfCards.dealCard();
+      pokerHand[3] = myDeckOfCards.dealCard();
+      pokerHand[4] = myDeckOfCards.dealCard();
+    }
 
     ModifiedCard[] updatedPokerHand = myDeckOfCards.sorting(pokerHand);
 
