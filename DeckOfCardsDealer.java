@@ -104,21 +104,20 @@ public class DeckOfCardsDealer
     {
       String face = hand[k].getSuit();
 
-      if(face.equals("Hearts"))
+      switch(suit)
       {
-        ++suitFrequency[0];
-      }
-      else if(face.equals("Diamonds"))
-      {
-        ++suitFrequency[1];
-      }
-      else if(face.equals("Clubs"))
-      {
-        ++suitFrequency[2];
-      }
-      else
-      {
-        ++suitFrequency[3];
+        case "Hearts":
+          ++suitFrequency[0];
+          break;
+        case "Diamonds":
+          ++suitFrequency[1];
+          break;
+        case "Clubs":
+          ++suitFrequency[2];
+          break;
+        case "Spades":
+          ++suitFrequency[3];
+          break;
       }
     }
     return suitFrequency;
