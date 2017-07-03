@@ -102,7 +102,7 @@ public class DeckOfCardsDealer
 
     for(int k = 0; k < hand.length; k++)
     {
-      String face = hand[k].getSuit();
+      String suit = hand[k].getSuit();
 
       switch(suit)
       {
