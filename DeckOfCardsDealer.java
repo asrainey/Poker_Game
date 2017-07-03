@@ -204,66 +204,8 @@ public class DeckOfCardsDealer
     DeckOfCardsDealer myDeckOfCards = new DeckOfCardsDealer();
 
     int[] faceFrequency = myDeckOfCards.determineFaceFrequency(hand);
-    Arrays.sort(faceFrequency);
-    
+
     int ranking = 0;
-    int k = 0;
-    //for(int k = 0; k < faceFrequency.length; ++k)
-    while(ranking == 0)
-    {
-      if(faceFrequency[k] == 2)
-      {
-        for(int i = (k + 1); i < faceFrequency.length; ++i)
-        {
-          if(faceFrequency[i] == 3)
-          {
-            ranking = 7;
-            break;
-          }
-          else if(faceFrequency[i] == 2)
-          {
-            ranking = 2;
-            break;
-          }
-          else
-          {
-            ranking = 1;
-            break;
-          }
-        }
-        //break;
-      }
-
-      if(faceFrequency[k] == 3)
-      {
-        for(int i = k + 1; i < faceFrequency.length; i++)
-        {
-          if(faceFrequency[i] == 2)
-          {
-            ranking = 7;
-            break;
-          }
-          else
-          {
-            ranking = 3;
-            break;
-          }
-        }
-        //ranking = 3;
-      }
-
-      if(faceFrequency[k] == 4)
-      {
-        ranking = 4;
-        break;
-      }
-      k++;
-
-      if (k > 12)
-      {
-        break;
-      }
-    }
 
     for(int n = 0; n < (faceFrequency.length - 5); ++n)
     if(faceFrequency[n] == 1)
@@ -282,10 +224,44 @@ public class DeckOfCardsDealer
         }
       }
     }
-    for(k = 0; k < faceFrequency.length; k++)
+
+    Arrays.sort(faceFrequency);
+
+    for(int k = 0; k < (faceFrequency.length - 1); ++k)
     {
-      System.out.printf("%d: %d\n", k, faceFrequency[k]);
+      if(faceFrequency[k] == 2)
+      {
+        if(faceFrequency[k + 1] == 3)
+        {
+          ranking = 7;
+        }
+        else if(faceFrequency[k + 1] == 2)
+        {
+          ranking = 2;
+        }
+      }
+
+      if (faceFrequency[faceFrequency.length - 1] == 2 &&
+          faceFrequency[faceFrequency.length - 2] != 2)
+      {
+        ranking = 1;
+      }
+
+      if(faceFrequency[k] == 3 || faceFrequency[k + 1] == 3)
+      {
+        ranking = 3;
+      }
+
+      if(faceFrequency[k] == 4 || faceFrequency[k + 1] == 4)
+      {
+        ranking = 4;
+      }
     }
+
+    //for(int k = 0; k < faceFrequency.length; k++)
+    //{
+    //  System.out.printf("%d: %d\n", k, faceFrequency[k]);
+    //}
     return ranking;
   }
 
