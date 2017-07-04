@@ -286,25 +286,25 @@ public class DeckOfCardsPoker
     switch(handRanking)
     {
       case 1:
-        System.out.println("Your hand contains a pair");
+        System.out.println("This hand contains a pair");
         break;
       case 2:
-        System.out.println("Your hand contains two pairs");
+        System.out.println("This hand contains two pairs");
         break;
       case 3:
-        System.out.println("Your hand contains a three of a kind");
+        System.out.println("This hand contains a three of a kind");
         break;
       case 4:
-        System.out.println("Your hand contains a four of a kind");
+        System.out.println("This hand contains a four of a kind");
         break;
       case 5:
-        System.out.println("Your hand contains a flush");
+        System.out.println("This hand contains a flush");
         break;
       case 6:
-        System.out.println("Your hand contains a straight");
+        System.out.println("This hand contains a straight");
         break;
       case 7:
-        System.out.println("Your hand contains a full house");
+        System.out.println("This hand contains a full house");
         break;
       default:
         System.out.println();
@@ -411,7 +411,7 @@ public class DeckOfCardsPoker
       }
     }
     // don't need to replace any cards if handRanking == 5, 6, 7
-    return pokerHand;
+    return updatedPokerHand;
   }
 
   public ModifiedCard[] sorting(ModifiedCard[] pokerHand)
@@ -537,6 +537,7 @@ public class DeckOfCardsPoker
     String cardSuit = cardAttributes[cardAttributes.length - 1];
 
     String[] handFaces = new String[5];
+    String[] handSuits = new String[5];
 
     // create handFaces array
     for(int k = 0; k < updatedPokerHand.length; k++)
@@ -544,22 +545,32 @@ public class DeckOfCardsPoker
       handFaces[k] = updatedPokerHand[k].getFace();
     }
 
-    for(int k = 0; k < handFaces.length; k++)
+    // create handSuits array
+    for(int k = 0; k < updatedPokerHand.length; k++)
     {
-      System.out.printf("%-19s", handFaces[k]);
+      handSuits[k] = updatedPokerHand[k].getSuit();
     }
 
     for (int i = 0; i < handFaces.length - 1; i++)
     {
-      if (cardFace == handFaces[i])
+      if(cardFace.equalsIgnoreCase(handFaces[i]) &&
+        cardSuit.equalsIgnoreCase(handSuits[i]))
       {
-
-        if(handFaces[i] == handFaces[i + 1])
+        updatedPokerHand[i] = myDeckOfCards.dealCard();
+        System.out.printf("The new card is %s", updatedPokerHand[i]);
+        updatedPokerHand[i] = myDeckOfCards.dealCard();
+        System.out.printf("The new card is %s", updatedPokerHand[i]);
+        break;
+      }
+    }
+      /*if (cardFace.equalsIgnoreCase(handFaces[i]))
+      {
+        if(handFaces[i].equalsIgnoreCase(handFaces[i + 1]))
         {
           String handSuit1 = updatedPokerHand[i].getSuit();
           String handSuit2 = updatedPokerHand[i + 1].getSuit();
 
-          if(cardSuit == handSuit1)
+          if(cardSuit.equalsIgnoreCase(handSuit1))
           {
             updatedPokerHand[i] = myDeckOfCards.dealCard();
           }
@@ -568,12 +579,12 @@ public class DeckOfCardsPoker
             updatedPokerHand[i + 1] = myDeckOfCards.dealCard();
           }
         }
-        else if(handFaces[i] == handFaces[handFaces.length - 1])
+        else if(handFaces[i].equalsIgnoreCase(handFaces[handFaces.length - 1]))
         {
           String handSuit1 = updatedPokerHand[i].getSuit();
           String handSuit2 = updatedPokerHand[handFaces.length - 1].getSuit();
 
-          if(cardSuit == handSuit1)
+          if(cardSuit.equalsIgnoreCase(handSuit1))
           {
             updatedPokerHand[i] = myDeckOfCards.dealCard();
           }
@@ -581,14 +592,12 @@ public class DeckOfCardsPoker
           {
             updatedPokerHand[handFaces.length - 1] = myDeckOfCards.dealCard();
           }
+          break;
         }
-      }
-      else
-      {
-        updatedPokerHand[i] = myDeckOfCards.dealCard();
-      }
-      break;
-    }
+        else
+        {
+          updatedPokerHand[i] = myDeckOfCards.dealCard();
+        }*/
 
     System.out.println("Your updated hand - ");
     for(int i = 0; i < 5; i++)
