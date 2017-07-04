@@ -525,12 +525,20 @@ public class DeckOfCardsPoker
       }
       else if(answer.equalsIgnoreCase("N"))
       {
+        System.out.println("Your final hand - ");
+        for(int i = 0; i < 5; i++)
+        {
+          // display dealer hand
+          System.out.printf("%-19s", updatedPokerHand[i]);
+        }
+        System.out.println();
         break;
       }
       else
       {
         System.out.println("That is not a valid answer.");
-        myDeckOfCards.playerRedraw(updatedPokerHand);
+        k--;
+        //myDeckOfCards.playerRedraw(updatedPokerHand);
       }
     }
     return updatedPokerHand;
@@ -571,45 +579,9 @@ public class DeckOfCardsPoker
         cardSuit.equalsIgnoreCase(handSuits[i]))
       {
         updatedPokerHand[i] = myDeckOfCards.dealSingleCard();
-        System.out.printf("The new card is %s", updatedPokerHand[i]);
         break;
       }
     }
-      /*if (cardFace.equalsIgnoreCase(handFaces[i]))
-      {
-        if(handFaces[i].equalsIgnoreCase(handFaces[i + 1]))
-        {
-          String handSuit1 = updatedPokerHand[i].getSuit();
-          String handSuit2 = updatedPokerHand[i + 1].getSuit();
-
-          if(cardSuit.equalsIgnoreCase(handSuit1))
-          {
-            updatedPokerHand[i] = myDeckOfCards.dealCard();
-          }
-          else
-          {
-            updatedPokerHand[i + 1] = myDeckOfCards.dealCard();
-          }
-        }
-        else if(handFaces[i].equalsIgnoreCase(handFaces[handFaces.length - 1]))
-        {
-          String handSuit1 = updatedPokerHand[i].getSuit();
-          String handSuit2 = updatedPokerHand[handFaces.length - 1].getSuit();
-
-          if(cardSuit.equalsIgnoreCase(handSuit1))
-          {
-            updatedPokerHand[i] = myDeckOfCards.dealCard();
-          }
-          else
-          {
-            updatedPokerHand[handFaces.length - 1] = myDeckOfCards.dealCard();
-          }
-          break;
-        }
-        else
-        {
-          updatedPokerHand[i] = myDeckOfCards.dealCard();
-        }*/
 
     System.out.println("Your updated hand - ");
     for(int i = 0; i < 5; i++)

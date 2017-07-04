@@ -19,17 +19,17 @@ public class PokerGameDealerPlayer
     ModifiedCard[] updatedDealerHand = myDeckOfCards.updateCardsinHand(dealerHand);
 
     // Player actions
-    /*ModifiedCard[] player1 = myDeckOfCards.dealHand();
-    System.out.println("-- Hand for Player 1 --");
+    System.out.println("Your hand is - ");
+    ModifiedCard[] player1 = myDeckOfCards.dealHand();
     int handRanking = myDeckOfCards.rankHand(player1);
 
     ModifiedCard[] updatedPlayer1 = myDeckOfCards.playerRedraw(player1);
 
-    int updatedHandRanking = myDeckOfCards.rankHand(updatedPlayer1);*/
+    int updatedHandRanking = myDeckOfCards.rankHand(updatedPlayer1);
     //ModifiedCard[] player2 = myDeckOfCards.dealHand();
     //System.out.println("-- Hand for Player 2 --");
     //int handRanking2 = myDeckOfCards.rankHand(player2);
-
+    System.out.println();
     System.out.println("Dealer's hand is: ");
     for(int i = 0; i < 5; i++)
     {
@@ -39,17 +39,20 @@ public class PokerGameDealerPlayer
     System.out.println();
     int updatedDealerHandRanking = myDeckOfCards.rankHand(updatedDealerHand);
 
-    /*if(updatedDealerHandRanking > handRanking)
+    if(updatedDealerHandRanking > handRanking)
     {
+      System.out.println();
       System.out.println("Dealer wins.\n");
     }
     else if (handRanking < updatedDealerHandRanking)
     {
+      System.out.println();
       System.out.println("Congratulations, you win!\n");
     }
     else
     {
+      System.out.println();
       System.out.println("Both players have the same hand.");
-    }*/
+    }
   }
 }
