@@ -92,18 +92,24 @@ public class DeckOfCardsPoker
       // deal and display a Card
       pokerHand[i] = myDeckOfCards.dealCard();
     }
-    System.out.println();
 
     return pokerHand;
   }
 
-  public ModifiedCard dealSingleCard()
+  public ModifiedCard dealSingleCard(ModifiedCard[] pokerHand)
   {
     DeckOfCardsPoker myDeckOfCards = new DeckOfCardsPoker();
 
     myDeckOfCards.shuffle();  // place cards in random order
 
     ModifiedCard newCard = myDeckOfCards.dealCard();
+
+    while(newCard == pokerHand[0] || newCard == pokerHand[1] ||
+          newCard == pokerHand[2] || newCard == pokerHand[3] ||
+          newCard == pokerHand[4])
+    {
+      newCard = myDeckOfCards.dealCard();
+    }
 
     return newCard;
   }
@@ -360,56 +366,56 @@ public class DeckOfCardsPoker
     if(handRanking == 0) // replace any three cards
     {
       int num = randomNumbers.nextInt(3);
-      updatedPokerHand[num] = myDeckOfCards.dealSingleCard();
+      updatedPokerHand[num] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       num = randomNumbers.nextInt(3);
-      updatedPokerHand[num] = myDeckOfCards.dealSingleCard();
+      updatedPokerHand[num] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       num = randomNumbers.nextInt(3);
-      updatedPokerHand[num] = myDeckOfCards.dealSingleCard();
+      updatedPokerHand[num] = myDeckOfCards.dealSingleCard(updatedPokerHand);
     }
 
     if(handRanking == 1)  // replace three cards
     {
       if(face_1 == face_2)
       {
-        updatedPokerHand[2] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[3] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[4] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[2] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[3] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[4] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
       else if (face_2 == face_3)
       {
-        updatedPokerHand[0] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[3] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[4] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[0] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[3] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[4] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
       else if (face_3 == face_4)
       {
-        updatedPokerHand[0] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[1] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[4] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[0] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[1] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[4] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
       else
       {
-        updatedPokerHand[0] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[1] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[2] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[0] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[1] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[2] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
     }
     else if (handRanking == 3) // replace 2 cards
     {
       if(face_1 == face_3)
       {
-        updatedPokerHand[3] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[4] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[3] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[4] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
       else if(face_2 == face_4)
       {
-        updatedPokerHand[0] = myDeckOfCards.dealSingleCard();
-        updatedPokerHand[4] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[0] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+        updatedPokerHand[4] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
       else
       {
-      updatedPokerHand[0] = myDeckOfCards.dealSingleCard();
-      updatedPokerHand[1] = myDeckOfCards.dealSingleCard();
+      updatedPokerHand[0] = myDeckOfCards.dealSingleCard(updatedPokerHand);
+      updatedPokerHand[1] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
     }
 
@@ -417,11 +423,11 @@ public class DeckOfCardsPoker
     {
       if(face_1 == face_4)
       {
-        updatedPokerHand[4] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[4] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
       else
       {
-        updatedPokerHand[0] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[0] = myDeckOfCards.dealSingleCard(updatedPokerHand);
       }
     }
     // don't need to replace any cards if handRanking == 5, 6, 7
@@ -573,12 +579,12 @@ public class DeckOfCardsPoker
       handSuits[k] = updatedPokerHand[k].getSuit();
     }
 
-    for (int i = 0; i < handFaces.length - 1; i++)
+    for (int i = 0; i < handFaces.length; i++)
     {
       if(cardFace.equalsIgnoreCase(handFaces[i]) &&
         cardSuit.equalsIgnoreCase(handSuits[i]))
       {
-        updatedPokerHand[i] = myDeckOfCards.dealSingleCard();
+        updatedPokerHand[i] = myDeckOfCards.dealSingleCard(updatedPokerHand);
         break;
       }
     }
