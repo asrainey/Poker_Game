@@ -544,7 +544,6 @@ public class DeckOfCardsPoker
       {
         System.out.println("That is not a valid answer.");
         k--;
-        //myDeckOfCards.playerRedraw(updatedPokerHand);
       }
     }
     return updatedPokerHand;
